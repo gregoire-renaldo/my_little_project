@@ -3,10 +3,8 @@ const AppError = require('../utils/appError')
 const catchAsync = require('../utils/catchAsync')
 
 exports.getBoat = catchAsync(async(req,res,next) => {
-  const boat = await Boat.findById(req.params.id).populate({
-    path: 'dateAvailable',
-    // select: ''
-  })
+  // populate to facilitate reading of theavailableDate inside the boats instances \!/ performance
+  const boat = await Boat.findById(req.params.id)
   // Boat.findOne({ _id: req.params.id})
   if (!boat) {
     return next(new AppError('No boat found with that ID', 404))
