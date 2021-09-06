@@ -1,0 +1,50 @@
+[
+{
+  "name": "Boat 1",
+  "description": "A very beautiful boat",
+  "price_for_rent": 150,
+  "imagePath":"image_path_to_do_with_cloudinary",
+  "user_id": "user_1",
+  "place": {
+    "type": "Point",
+    "coordinates": [
+      -80.185942,
+      25.774772
+    ],
+    "address": "301 Biscayne Blvd, Miami, FL 33132, USA",
+    "description": "optionnal, such a beautiful place"
+  }
+},
+  {
+    "name": "Boat 2",
+    "description": "A super beautiful boat",
+    "price_for_rent": 200,
+    "imagePath": "image_path_to_do_with_cloudinary",
+    "user_id": "user_2",
+    "place": {
+      "type": "Point",
+      "coordinates": [
+        -80.128473,
+        25.781842
+      ],
+      "address": "Lummus Park Beach",
+      "description": "optionnal, such a beautiful place"
+    }
+  },
+  {
+    "name": "Boat 3",
+    "description": "A super beautiful boat",
+    "price_for_rent": 100,
+    "imagePath": "image_path_to_do_with_cloudinary",
+    "user_id": "user_3",
+    "place": {
+      "type": "Point",
+      "coordinates": [
+        -80.647885,
+        24.909047
+      ],
+      "address": "Islamorada",
+      "description": "optionnal, such a very nice beautiful place"
+    }
+  }
+]
