@@ -3,16 +3,21 @@
   "name": "Boat 1",
   "description": "A very beautiful boat",
   "price_for_rent": 150,
-  "imagePath":"image_path_to_do_with_cloudinary",
-  "user_id": "user_1",
+  "imagePath": "image_path_to_do_with_cloudinary",
+  "user_id": "61322a5fbce89b01ee94e09261322a5fbce89b01ee94e092",
+  "dateAvailable" : {
+    "_id": "61361d8b8f86a28a58b3fb5c",
+      "start_date": "2021-06-19T02:00:00.000Z",
+      "end_date": "2021-12-19T02:00:00.000Z"
+    }
+  ,
   "place": {
     "type": "Point",
     "coordinates": [
       -80.185942,
       25.774772
     ],
-    "address": "301 Biscayne Blvd, Miami, FL 33132, USA",
-    "description": "optionnal, such a beautiful place"
+    "address": "301 Biscayne Blvd, Miami, FL 33132, USA"
   }
 },
   {
@@ -20,15 +25,19 @@
     "description": "A super beautiful boat",
     "price_for_rent": 200,
     "imagePath": "image_path_to_do_with_cloudinary",
-    "user_id": "user_2",
+    "user_id": "61322a6dbce89b01ee94e094",
+    "dateAvailable":{
+      "_id": "61361d8b8f86a28a58b3fb5e",
+      "start_date": "2021-06-19T02:00:00.000Z",
+      "end_date": "2021-12-19T02:00:00.000Z"
+    },
     "place": {
       "type": "Point",
       "coordinates": [
         -80.128473,
         25.781842
       ],
-      "address": "Lummus Park Beach",
-      "description": "optionnal, such a beautiful place"
+      "address": "Lummus Park Beach"
     }
   },
   {
@@ -36,15 +45,24 @@
     "description": "A super beautiful boat",
     "price_for_rent": 100,
     "imagePath": "image_path_to_do_with_cloudinary",
-    "user_id": "user_3",
+    "user_id": "61322a6dbce89b01ee94e094",
+    "dateAvailable":[
+      {
+      "_id": "61361d8b8f86a28a58b3fb5e",
+      "start_date": "2021-06-19T02:00:00.000Z",
+      "end_date": "2021-12-19T02:00:00.000Z"
+    },
+    {"_id": "61361d8b8f86a28a58b3fb5e",
+    "start_date": "2021-06-19T02:00:00.000Z",
+    "end_date": "2021-12-19T02:00:00.000Z"}]
+  ,
     "place": {
       "type": "Point",
       "coordinates": [
         -80.647885,
         24.909047
       ],
-      "address": "Islamorada",
-      "description": "optionnal, such a very nice beautiful place"
+      "address": "Islamorada"
     }
   }
 ]
