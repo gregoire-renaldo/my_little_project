@@ -9138,9 +9138,11 @@ require("regenerator-runtime/runtime.js");
 
 var _login = require("./login");
 
+// import { updateMe } from '/updateMe';
 // DOM ELEMENTS
 var loginForm = document.getElementById('login-form');
-var logoutButton = document.getElementById('logout-button');
+var logoutButton = document.getElementById('logout-button'); // const updateMeForm = document.getElementById('update-me-form')
+
 if (loginForm) loginForm.addEventListener('submit', function (e) {
   e.preventDefault();
   var email = document.getElementById('email-login').value;
@@ -9178,7 +9180,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38915" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "32803" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

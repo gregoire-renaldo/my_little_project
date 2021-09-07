@@ -1,9 +1,12 @@
 const express = require('express')
-const router = express.Router();
-
+const multer = require('multer')
 const userController = require('../controllers/userController')
 const authController = require('../controllers/authController');
 
+// multer config, destination folder
+const upload = multer({ dest: 'public/img/users' });
+
+const router = express.Router();
 router.post('/signup', authController.signup);
 router.post('/login', authController.login);
 router.get('/logout', authController.logout);
@@ -15,7 +18,7 @@ router.patch('/updatePassword', authController.protect, authController.updatePas
 
 // test restricted route with role
 router.get('/getAllUsers', authController.protect, authController.restrictTo('admin'),  userController.getAllUsers)
-router.delete('/deleteUser/:id', authController.protect, authController.restrictTo('admin', 'owner-boat'), userController.deleteUser)
+router.delete('/deleteUser/:id', authController.protect, authController.restrictTo('admin'), userController.deleteUser)
 
 
 // a user can update his info

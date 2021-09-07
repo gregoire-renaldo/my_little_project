@@ -1,10 +1,12 @@
 
 import "@babel/polyfill";
-import { login, logout } from './login'
+import { login, logout } from './login';
+// import { updateMe } from '/updateMe';
 
 // DOM ELEMENTS
 const loginForm = document.getElementById('login-form')
 const logoutButton = document.getElementById('logout-button')
+// const updateMeForm = document.getElementById('update-me-form')
 
 if (loginForm)
 loginForm.addEventListener('submit', e => {

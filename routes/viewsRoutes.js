@@ -4,7 +4,11 @@ const authController = require('../controllers/authController');
 
 const router = express.Router();
 
-// '/' est la route racine
+// '/' home page
 router.get('', authController.isLoggedIn,  viewsController.getHome);
 
+// my account
+router.get('/me', authController.isLoggedIn, authController.protect, viewsController.getMyAccount )
 module.exports = router;
+
+router.post('/submit-user-data', authController.protect, viewsController.updateUserData )

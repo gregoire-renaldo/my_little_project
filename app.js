@@ -63,7 +63,7 @@ app.use(hpp({
   whitelist: ['duration', ]
 }));
 
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: true, limit: '10kb' }))
 
 // serving satic files
 app.use(express.static(__dirname + '/public'));
