@@ -29,6 +29,7 @@ const createSendToken = (user, statusCode, res) => {
 
     // remove the password from the output
   user.password = undefined
+
   res.status(statusCode).json({
     status: 'Success',
     token,
@@ -80,6 +81,8 @@ exports.protect = catchAsync(async(req, res, next) => {
   let token;
   if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
   token = req.headers.authorization.split(' ')[1];
+  } else if (req.cookies.jwt) {
+    token =req.cookies.jwt;
   }
   // verification token
   if (!token) {
@@ -107,7 +110,7 @@ exports.restrictTo = (...roles) => {
   return (req, res, next) => {
     // roles is an array
     // closure has access to role
-    if(!roles.includes(req.user.role)){
+    if(!roles.includes(req.user.roles)){
     return next(new AppError('you do not have permission for this action', 403));
     }
     next()

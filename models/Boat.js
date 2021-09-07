@@ -1,12 +1,8 @@
 const mongoose = require('mongoose');
 // validations à revoir
-
 // methode to check if boat is available,
 // and if start_time is before Date.now,
 // delete member of colection
-
-
-
 
 const dateAvailableSchema = mongoose.Schema({
   start_date: Date,
@@ -18,29 +14,41 @@ const dateAvailableSchema = mongoose.Schema({
 
 // clé new: true or false to know if it's recently created
 const boatSchema = mongoose.Schema({
-  name: { type: String, required: true, unique: true },
-  description: { type: String, required: true },
-  price_for_rent: { type: Number, required: true },
-  imagePath: { type: String },
-  user_id: { type: String  },
-  dateAvailable: [dateAvailableSchema],
-  date: dateAvailableSchema,
-  place: {
-    // geojson, 1 boat place
-    type: {
-      type: String,
-      default: 'Point',
-      // to limit the options : Enum, only Points
-      enum: ['Point']
+    name: { type: String, required: true, unique: true },
+    description: { type: String, required: true },
+    price_for_rent: { type: Number, required: true },
+    imagePath: { type: String },
+    user_id: { type: String  },
+    dateAvailable: [dateAvailableSchema],
+    date: dateAvailableSchema,
+    place: {
+      // geojson, 1 boat place
+      type: {
+        type: String,
+        default: 'Point',
+        // to limit the options : Enum, only Points
+        enum: ['Point']
+      },
+      // coordinates Enum only number, lat (horiz) & long (vert)
+      coordinates: [Number],
+      address: String,
     },
-    // coordinates Enum only number, lat (horiz) & long (vert)
-    coordinates: [Number],
-    address: String,
+    // "ratingsAverage": 4.8,
+    // "ratingsQuantity": 6,
   },
-  // "ratingsAverage": 4.8,
-  // "ratingsQuantity": 6,
-});
+  // virtual populate instead of persisting in db ...
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true }
+  }
+  );
 
+  boatSchema.virtual('reviews', {
+    ref: 'Review',
+    // foreignField = where there is th Id
+    foreignField: 'boat',
+    localField: '_id'
+  })
 
 // Query MIDDLEWARE
 // regex forevery mongo request starting by "find => findById etc .."

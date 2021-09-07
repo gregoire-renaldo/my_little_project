@@ -4,7 +4,8 @@ const catchAsync = require('../utils/catchAsync')
 
 exports.getBoat = catchAsync(async(req,res,next) => {
   // populate to facilitate reading of theavailableDate inside the boats instances \!/ performance
-  const boat = await Boat.findById(req.params.id)
+  // reviews from virtual populate
+  const boat = await Boat.findById(req.params.id).populate('reviews');
   // Boat.findOne({ _id: req.params.id})
   if (!boat) {
     return next(new AppError('No boat found with that ID', 404))

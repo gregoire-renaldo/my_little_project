@@ -8,6 +8,8 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp')
+const cookieParser = require('cookie-parser')
+
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 
@@ -15,7 +17,7 @@ const app = express();
 
 // Global middleware
 // security http headers
-app.use(helmet())
+// app.use(helmet())
 
 // limit number of requests
 const limiter = rateLimit({
@@ -41,10 +43,13 @@ mongoose.connect(process.env.DATABASE,
 
 app.use(cors());
 
-  // Body parserTo parse get post update, reading data from body into req.body
-app.use(express.json({
+  // Body parser To parse get post update, reading data from body into req.body
+// parde data from body
+  app.use(express.json({
   limit: '10kb'
 }));
+// parse data from cookie
+app.use(cookieParser())
 
 // data sanitization against NoSql query injection
 // filter query, params etc..
@@ -67,9 +72,16 @@ app.set('view engine', 'ejs');
 
 // '/' est la route racine
 app.get('/', function (req, res) {
+
   res.render('pages/home');
 });
 
+// middleware test
+app.use((req, res, next) => {
+  req.requestTime = new Date().toISOString();
+  console.log(req.cookies);
+  next();
+})
 
 // Routes
 // renter boat
@@ -82,8 +94,14 @@ app.use('/user', userRoutes);
 const boatRoutes = require('./routes/boatRoutes')
 app.use('/boat', boatRoutes);
 
+const boatOwnerRoutes = require('./routes/boatOwnerRoutes')
+app.use('/boat/Owner', boatOwnerRoutes)
+
 // owner boat, authentified, can create ,update, delete a boat
 
+// reviews
+const reviewsRoutes = require('./routes/reviewRoutes')
+app.use('/reviews', reviewsRoutes)
 
 
 app.all('*', (req, res, next) => {

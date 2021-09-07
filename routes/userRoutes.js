@@ -13,7 +13,7 @@ router.patch('/resetPassword/:token', authController.resetPassword);
 router.patch('/updatePassword', authController.protect, authController.updatePassword)
 
 // test restricted route with role
-router.get('/getAllUsers',  userController.getAllUsers)
+router.get('/getAllUsers', authController.protect, authController.restrictTo('admin'),  userController.getAllUsers)
 router.delete('/deleteUser/:id', authController.protect, authController.restrictTo('admin', 'owner-boat'), userController.deleteUser)
 
 
