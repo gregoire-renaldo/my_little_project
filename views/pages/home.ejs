@@ -3,7 +3,16 @@
 </head>
 
 <h1>salut</h1>
-<h2>all boats, only admin : admin@mail.com</h2>
+<h2>all boats, only admin </h2>
+
+
+<% if (typeof user !== 'undefined') { %>
+  <p> Logged In!!!</p>
+    <%} else { %>
+      <p> Not logged in </p>
+      <% } %>
+
+
 <div>
   <a href="http://localhost:3000/user/getAllUsers">all users</a>
 </div>

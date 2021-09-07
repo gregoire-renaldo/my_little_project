@@ -70,19 +70,17 @@ app.use(express.static(__dirname + '/public'));
 // Setting the views with ejs
 app.set('view engine', 'ejs');
 
-// '/' est la route racine
-app.get('/', function (req, res) {
 
-  res.render('pages/home');
-});
 
 // middleware test
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
-  console.log(req.cookies);
+  // console.log(req.cookies);
   next();
 })
 
+const viewRouter = require('./routes/viewRoutes')
+app.use('/',viewRouter)
 // Routes
 // renter boat
 

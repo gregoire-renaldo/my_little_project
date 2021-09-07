@@ -74,6 +74,25 @@ exports.login = catchAsync(async (req, res, next) => {
   }
 );
 
+// for rendered pages
+exports.isLoggedIn = catchAsync(async (req, res, next) => {
+  if (req.cookies.jwt) {
+    // verify the token
+  const decoded = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET);
+  const currentUser = await User.findById(decoded.id);
+  if (!currentUser) {
+    return next();
+  }
+  if (currentUser.changedPasswordAfter(decoded.iat)) {
+    return next();
+  }
+  // user is logged in
+  // res.locals to pass data to front
+  res.locals.user = currentUser;
+  return next();
+}
+next();
+});
 
 exports.protect = catchAsync(async(req, res, next) => {
   // get the token , http header req.headers Authorisation Bearer
