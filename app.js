@@ -79,7 +79,7 @@ app.use((req, res, next) => {
   next();
 })
 
-const viewRouter = require('./routes/viewRoutes')
+const viewRouter = require('./routes/viewsRoutes')
 app.use('/',viewRouter)
 // Routes
 // renter boat

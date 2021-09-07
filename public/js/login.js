@@ -1,7 +1,7 @@
-
 /* eslint-disable */
+import axios from 'axios';
 
-const login = async(email, password) => {
+export const login = async(email, password) => {
   try {
     const res = await axios({
       method: 'POST',
@@ -26,9 +26,15 @@ const login = async(email, password) => {
 };
 
 
-document.getElementById('login-form').addEventListener('submit', e => {
-  e.preventDefault();
-  const email = document.getElementById('email-login').value;
-  const password = document.getElementById('password-login').value;
-  login(email, password)
-} )
+export const logout = async () => {
+  try {
+    const res = await axios({
+      method: 'GET',
+      url: "http://localhost:3000/user/logout",
+    });
+    // reload true to force reload (not from the cache, from the server)
+    if (res.data.status = 'success') location.reload(true); alert('Logged out successfully !');
+  } catch(err) {
+    alert('error logging out')
+  }
+}

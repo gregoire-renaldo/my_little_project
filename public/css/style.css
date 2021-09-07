@@ -2,3 +2,7 @@ body {
   padding-top: 50px;
   color: red
 }
+
+button {
+  padding: 1rem
+}

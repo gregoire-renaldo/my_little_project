@@ -75,24 +75,44 @@ exports.login = catchAsync(async (req, res, next) => {
 );
 
 // for rendered pages
-exports.isLoggedIn = catchAsync(async (req, res, next) => {
+// no catchAsync, so we don't deal with error globaly, for the logout..,
+// ..we send a bad token, so it ceates an error, we deal with it inside the function...
+// .. with try catch
+exports.isLoggedIn = async (req, res, next) => {
   if (req.cookies.jwt) {
+    try {
     // verify the token
-  const decoded = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET);
+  const decoded = await promisify(jwt.verify)(
+    req.cookies.jwt,
+    process.env.JWT_SECRET
+    );
+
   const currentUser = await User.findById(decoded.id);
-  if (!currentUser) {
-    return next();
-  }
-  if (currentUser.changedPasswordAfter(decoded.iat)) {
-    return next();
-  }
+    if (!currentUser) {
+      return next();
+    }
+    if (currentUser.changedPasswordAfter(decoded.iat)) {
+      return next();
+    }
   // user is logged in
   // res.locals to pass data to front
   res.locals.user = currentUser;
   return next();
+    } catch(err) {
+      return next()
+    }
 }
 next();
-});
+};
+
+// to logout, overwrite cookie with dumb one
+exports.logout = async(req,res,next) => {
+  res.cookie('jwt', 'goodbye', {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true
+  });
+  res.status(200).json({ status: 'success'});
+};
 
 exports.protect = catchAsync(async(req, res, next) => {
   // get the token , http header req.headers Authorisation Bearer
