@@ -16,6 +16,10 @@ exports.getAllReviews = catchAsync(async (req, res, next) => {
 
 
 exports.createReview = catchAsync(async (req, res, next) => {
+  // if boat not in the body, check the params
+  if(!req.body.boat) req.body.boat = req.params.boatId
+  // user from protect middleware
+  if(!req.body.user) req.body.user = req.user.id
   const newReview = await Review.create(req.body);
   res.status(201).json({
     status: 'success',

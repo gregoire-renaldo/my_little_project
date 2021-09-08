@@ -95,7 +95,7 @@ exports.isLoggedIn = async (req, res, next) => {
       return next();
     }
   // user is logged in
-  // res.locals to pass data to front
+  // res.locals to pass user to front
   res.locals.user = currentUser;
   return next();
     } catch(err) {
@@ -115,13 +115,14 @@ exports.logout = async(req,res,next) => {
 };
 
 exports.protect = catchAsync(async(req, res, next) => {
+  // to pass user to the front after verification
   // get the token , http header req.headers Authorisation Bearer
   // ES6 variables declare in scope, only available in scope
   let token;
   if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
   token = req.headers.authorization.split(' ')[1];
   } else if (req.cookies.jwt) {
-    token =req.cookies.jwt;
+    token = req.cookies.jwt;
   }
   // verification token
   if (!token) {

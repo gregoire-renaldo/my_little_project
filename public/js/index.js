@@ -23,10 +23,15 @@ if(logoutButton) logoutButton.addEventListener('click', e => {logout() })
 if (updateMeForm)
 updateMeForm.addEventListener('submit', e => {
   e.preventDefault();
-  const firstname = document.getElementById('firstname-update').value;
-  const lastname = document.getElementById('lastname-update').value;
-  const email = document.getElementById('email-update').value;
-  updateSettings({firstname, lastname,email}, 'data')
+  // create form for axios
+  const form = new FormData();
+  form.append('firstname', document.getElementById('firstname-update').value )
+  form.append('lastname', document.getElementById('lastname-update').value )
+  form.append('email', document.getElementById('email-update').value)
+  // .files == array
+  if (document.getElementById('photo').files[0] != undefined) form.append('photo', document.getElementById('photo').files[0]);
+
+  updateSettings(form, 'data')
 })
 
 if (updatePasswordForm)

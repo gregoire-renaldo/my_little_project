@@ -9225,15 +9225,15 @@ if (logoutButton) logoutButton.addEventListener('click', function (e) {
   (0, _login.logout)();
 });
 if (updateMeForm) updateMeForm.addEventListener('submit', function (e) {
-  e.preventDefault();
-  var firstname = document.getElementById('firstname-update').value;
-  var lastname = document.getElementById('lastname-update').value;
-  var email = document.getElementById('email-update').value;
-  (0, _updateSettings.updateSettings)({
-    firstname: firstname,
-    lastname: lastname,
-    email: email
-  }, 'data');
+  e.preventDefault(); // create form for axios
+
+  var form = new FormData();
+  form.append('firstname', document.getElementById('firstname-update').value);
+  form.append('lastname', document.getElementById('lastname-update').value);
+  form.append('email', document.getElementById('email-update').value); // .files == array
+
+  if (document.getElementById('photo').files[0] != undefined) form.append('photo', document.getElementById('photo').files[0]);
+  (0, _updateSettings.updateSettings)(form, 'data');
 });
 if (updatePasswordForm) updatePasswordForm.addEventListener('submit', /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {

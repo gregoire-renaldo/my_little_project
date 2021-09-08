@@ -21,6 +21,10 @@ const boatSchema = mongoose.Schema({
     user_id: { type: String  },
     dateAvailable: [dateAvailableSchema],
     date: dateAvailableSchema,
+    maxPeople: {
+      type: Number,
+      required: [true, 'A tour must have a group size']
+    },
     place: {
       // geojson, 1 boat place
       type: {

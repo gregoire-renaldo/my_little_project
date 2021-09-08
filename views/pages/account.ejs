@@ -17,7 +17,8 @@ object-fit: cover;" src="<%-`/img/users/${user.photo}` %> " alt="">
       <h2>Update me</h2>
       <div>
         <!-- Without API
-        <form action="submit-user-data" method="POST" id="update-me-form"> -->
+        <form action="submit-user-data" method="POST" enctype='multipart/form-data'> -->
+<!-- enctype='multipart/form-data'    to send files -->
 
           <!-- WITH API -->
         <form  id="update-me-form">
@@ -26,7 +27,10 @@ object-fit: cover;" src="<%-`/img/users/${user.photo}` %> " alt="">
           <label for="lastname">Enter lastname: </label>
           <input id="lastname-update" type="text" name="lastname" value=<%-`${user.lastname}`%>>
           <label for="email">Enter email: </label>
-          <input id="email-update" type="text" name="email" value=<%-`${user.email}`%>>
+          <input id="email-update" type="email" name="email" value=<%-`${user.email}`%>>
+          <!-- name 'photo' => field in User document, and name expected by multer -->
+          <label for="photo">Enter photo: </label>
+          <input id="photo" type="file" accept="image/*" name="photo">
           <input type="submit" value="Update Me">
         </form>
 
@@ -36,11 +40,11 @@ object-fit: cover;" src="<%-`/img/users/${user.photo}` %> " alt="">
         <h2>Update password</h2>
         <form id="update-password-form">
           <label for="current-password">Enter current-password: </label>
-          <input id="current-password" type="text" name="current-password">
+          <input id="current-password" type="password" name="current-password">
           <label for="new-password">Enter new-password: </label>
-          <input id="new-password" type="text" name="new-password">
+          <input id="new-password" type="password" name="new-password">
           <label for="confirm-new-password">Enter confirm-new-password: </label>
-          <input id="confirm-new-password" type="text" name="confirm-new-password">
+          <input id="confirm-new-password" type="password" name="confirm-new-password">
           <input type="submit" value="Update Password">
         </form>
       </div>

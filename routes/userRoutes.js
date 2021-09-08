@@ -1,7 +1,6 @@
 const express = require('express')
 const userController = require('../controllers/userController')
 const authController = require('../controllers/authController');
-
 const router = express.Router();
 
 // not protected routes
@@ -16,6 +15,8 @@ router.patch('/resetPassword/:token', authController.resetPassword);
 // from here, all routes protected (connected)
 router.use(authController.protect)
 router.patch('/updatePassword', authController.updatePassword)
+
+
 
 // test restricted route with role
 router.get('/getAllUsers', authController.restrictTo('admin'),  userController.getAllUsers)

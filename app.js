@@ -70,6 +70,7 @@ app.use(express.static(__dirname + '/public'));
 // Setting the views with ejs
 app.set('view engine', 'ejs');
 
+// check params
 
 
 // middleware test
