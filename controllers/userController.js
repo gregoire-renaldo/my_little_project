@@ -67,6 +67,27 @@ const filterObj = (obj, ...allowedFields) => {
   })
   return newObj
 }
+
+exports.getMe = (req,res, next) => {
+  req.params.id = req.user.id;
+  next()
+}
+
+exports.getUser = catchAsync(async(req,res,next) => {
+  user = await User.findById(req.params.id)
+
+  if(!user) {
+    return next(new AppError('No document found with that ID', 404))
+  }
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      user
+    }
+  })
+})
+
 exports.updateMe = catchAsync(async(req, res, next) => {
   console.log(req.file)
   console.log(req.body)

@@ -13,10 +13,10 @@ router.patch('/resetPassword/:token', authController.resetPassword);
 
 
 // from here, all routes protected (connected)
-router.use(authController.protect)
+router.use(authController.protect);
+
+router.get('/me', userController.getMe, userController.getUser)
 router.patch('/updatePassword', authController.updatePassword)
-
-
 
 // test restricted route with role
 router.get('/getAllUsers', authController.restrictTo('admin'),  userController.getAllUsers)
