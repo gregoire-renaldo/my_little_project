@@ -11,18 +11,34 @@
 
       <h2>Update me</h2>
       <div>
-        <form action="submit-user-data" method="POST" id="update-me-form">
+        <!-- Without API
+        <form action="submit-user-data" method="POST" id="update-me-form"> -->
+
+          <!-- WITH API -->
+        <form  id="update-me-form">
           <label for="firstname">Enter firstname: </label>
-          <input id="firstname" type="text" name="firstname" value="">
+          <input id="firstname-update" type="text" name="firstname" value=<%-`${user.firstname}`%>>
           <label for="lastname">Enter lastname: </label>
-          <input id="lastname" type="text" name="lastname" value="">
+          <input id="lastname-update" type="text" name="lastname" value=<%-`${user.lastname}`%>>
           <label for="email">Enter email: </label>
-          <input id="email" type="text" name="email" value="">
+          <input id="email-update" type="text" name="email" value=<%-`${user.email}`%>>
           <input type="submit" value="Update Me">
         </form>
+
       </div>
 
-      'firstname', 'lastname', 'email'
+      <div>
+        <h2>Update password</h2>
+        <form id="update-password-form">
+          <label for="current-password">Enter current-password: </label>
+          <input id="current-password" type="text" name="current-password">
+          <label for="new-password">Enter new-password: </label>
+          <input id="new-password" type="text" name="new-password">
+          <label for="confirm-new-password">Enter confirm-new-password: </label>
+          <input id="confirm-new-password" type="text" name="confirm-new-password">
+          <input type="submit" value="Update Password">
+        </form>
+      </div>
       /updatePassword
 
       /deleteMe'
@@ -31,3 +47,5 @@
   </div>
 
 </div>
+
+<script type="text/javascript" src="/js/bundle.js"></script>

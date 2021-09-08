@@ -12,7 +12,7 @@ export const login = async(email, password) => {
       }
     })
 
-    if(res.data.status === 'Success') {
+    if(res.data.status === 'success') {
       alert('Logged in successfully !')
       // redirect
       window.setTimeout(() => {

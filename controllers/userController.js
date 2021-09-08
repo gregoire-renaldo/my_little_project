@@ -12,8 +12,7 @@ const filterObj = (obj, ...allowedFields) => {
   })
   return newObj
 }
-exports.updateMe = catchAsync(
-  async(req, res, next) => {
+exports.updateMe = catchAsync(async(req, res, next) => {
     // 1) create error id user post password
     if (req.body.password || req.body.passwordConfirm) {
       return next(new AppError('route not for password upddate', 400 ))
