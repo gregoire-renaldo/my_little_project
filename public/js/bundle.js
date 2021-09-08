@@ -8800,7 +8800,7 @@ var login = /*#__PURE__*/function () {
               alert('Logged in successfully !'); // redirect
 
               window.setTimeout(function () {
-                location.assign('/');
+                location.assign('/me');
               }, 1500);
             }
 

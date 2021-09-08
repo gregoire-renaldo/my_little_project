@@ -46,3 +46,8 @@ const x = await promise
 const x = promise
 return the promise itself use full if you want multiple promises to resolve at the same time
 const all = await Promise.all([promise1, promise2, promise3])
+
+
+erros :
+400 bad request
+https://www.restapitutorial.com/httpstatuscodes.html

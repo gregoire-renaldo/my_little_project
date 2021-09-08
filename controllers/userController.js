@@ -2,6 +2,35 @@ const User = require('../models/User');
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 
+const multer = require('multer');
+const multerStorage = multer.diskStorage({
+  destination: (req, file,cb) => {
+    cb(null, 'public/img/users');
+  },
+  filename: (req, file,cb) => {
+    const ext = file.mimetype.split('/')[1];
+    // null == if no error, first arg of cb() == error
+    cb(null, `user-${req.user.id}-${Date.now()}.${ext}`)
+  }
+})
+// to check if file is an image mimitype: image/something
+const multerFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith('image')) {
+    cb(null, true)
+  } else {
+    cb(new AppError('Not an image, please upload an image', 400), false)
+  }
+}
+// multer config, destination folder
+const upload = multer({
+  storage: multerStorage,
+  fileFilter: multerFilter
+});
+
+// upload.single('photo') photo == name of the field in the form
+exports.uploadUserPhoto = upload.single('photo');
+
+
 // ...allowFields = array with all arguments
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {};
@@ -13,15 +42,18 @@ const filterObj = (obj, ...allowedFields) => {
   return newObj
 }
 exports.updateMe = catchAsync(async(req, res, next) => {
+  console.log(req.file)
+  console.log(req.body)
     // 1) create error id user post password
     if (req.body.password || req.body.passwordConfirm) {
       return next(new AppError('route not for password upddate', 400 ))
     }
-
     // 2 update user, close the door to change role etc.. add the field
-    const filteredBody = filterObj(req.body, 'firstname', 'lastname', 'email')
-    const updatedUser = await User.findByIdAndUpdate(req.user.id, filteredBody, {new: true, runValidators: true} )
+    const filteredBody = filterObj(req.body, 'firstname', 'lastname', 'email', 'photo');
+    // if a file (photo) is uploaded
+    if (req.file) filteredBody.photo = req.file.filename;
 
+    const updatedUser = await User.findByIdAndUpdate(req.user.id, filteredBody, {new: true, runValidators: true} )
     res.status(200).json({
       status: 'success',
       data: {

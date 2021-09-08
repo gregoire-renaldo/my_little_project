@@ -12,11 +12,11 @@ const userSchema = mongoose.Schema({
     lowercase: true,
     validate: [validator.isEmail, 'Please provide a valide email']
   },
-  photo:{
-    type: String
-  },
   firstname: { type: String, required: true },
   lastname: { type: String, required: true },
+  photo:{
+    type: String,
+  default: 'default.jpg' },
   roles: {
     type: String,
     enum: ['user', 'boat-owner', 'admin'],
@@ -104,8 +104,5 @@ userSchema.methods.createPasswordResetToken = function() {
   // to send by email
   return resetToken;
 }
-
-
-
 
 module.exports = mongoose.model('User', userSchema);

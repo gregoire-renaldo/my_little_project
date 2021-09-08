@@ -16,7 +16,7 @@ export const login = async(email, password) => {
       alert('Logged in successfully !')
       // redirect
       window.setTimeout(() => {
-        location.assign('/');
+        location.assign('/me');
       }, 1500)
     }
     console.log(res)
