@@ -23,7 +23,7 @@ router.delete('/deleteUser/:id', authController.restrictTo('admin'), userControl
 
 
 // a user can update his info
-router.patch('/updateMe', userController.uploadUserPhoto, userController.updateMe)
+router.patch('/updateMe', userController.uploadUserPhoto, userController.resizeUserPhoto, userController.updateMe)
 
 // a user can delete (de-activate) his account
 router.delete('/deleteMe', userController.deleteMe)

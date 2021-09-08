@@ -3,16 +3,24 @@ const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 
 const multer = require('multer');
-const multerStorage = multer.diskStorage({
-  destination: (req, file,cb) => {
-    cb(null, 'public/img/users');
-  },
-  filename: (req, file,cb) => {
-    const ext = file.mimetype.split('/')[1];
-    // null == if no error, first arg of cb() == error
-    cb(null, `user-${req.user.id}-${Date.now()}.${ext}`)
-  }
-})
+const sharp = require('sharp');
+
+// to ave on disk
+// const multerStorage = multer.diskStorage({
+//   destination: (req, file,cb) => {
+//     cb(null, 'public/img/users');
+//   },
+//   filename: (req, file,cb) => {
+//     const ext = file.mimetype.split('/')[1];
+//     // null == if no error, first arg of cb() == error
+//     cb(null, `user-${req.user.id}-${Date.now()}.${ext}`)
+//   }
+// })
+
+// to store image in memory, as a buffer
+const multerStorage = multer.memoryStorage()
+
+
 // to check if file is an image mimitype: image/something
 const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith('image')) {
@@ -30,6 +38,24 @@ const upload = multer({
 // upload.single('photo') photo == name of the field in the form
 exports.uploadUserPhoto = upload.single('photo');
 
+// resize photo
+exports.resizeUserPhoto = (req, res, next) => {
+  if (!req.file) return next();
+  // set filename, need filemane in filterBody
+  // no need to set ext, toformat... format :-)
+  req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`;
+
+  // square images fo avatar 500*500, sharp crop by default
+  // resize(width height options)
+  sharp(req.file.buffer)
+  .resize(500,500)
+  .toFormat('jpeg')
+  .jpeg({quality: 90})
+  .toFile(`public/img/users/${req.file.filename}`);
+
+  // next for updateMe
+  next()
+};
 
 // ...allowFields = array with all arguments
 const filterObj = (obj, ...allowedFields) => {
