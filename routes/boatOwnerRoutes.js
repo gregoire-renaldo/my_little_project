@@ -1,16 +1,11 @@
 const express = require('express')
 const router = express.Router();
-const boatController = require('../controllers/boatController')
+const boatOwnerController = require('../controllers/boatOwnerController')
 const authController = require('../controllers/authController')
 
 
 
-router
-.route('/createBoat')
-.post(
-  authController.protect,
-  boatController.createBoat
-  )
+router.post('/createBoat', authController.protect, authController.restrictTo('boat-owner'), boatOwnerController.createBoat)
 
 // router.patch('/updateBoat', authController.protect, boatController.updateBoat )
 // router.delete('deleteBoat', authController.protect, boatController.deleteBoat)

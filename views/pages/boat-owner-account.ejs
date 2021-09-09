@@ -1,0 +1,42 @@
+<head>
+  <%- include('../partials/head'); %>
+</head>
+
+ <h2>hi! let's create a form to create a boat, remeber it's nested with user, but got acccess to user with current user, params</h2>
+
+
+<div class="container">
+
+  <h2>boate create</h2>
+  <div>
+
+    <form action="/boat/Owner/createBoat" method="post" id="">
+    <!-- <form id="form-create-boat"> -->
+      <label for="name">Enter name: </label>
+      <input id="name" type="text" name="name" value="">
+
+      <label for="description">Enter description: </label>
+      <input id="description" type="text" name="description" value="">
+
+      <label for="price">Enter price: </label>
+      <input id="price" type="number" name="price" value="">
+
+      <label for="maxPeople">Max people </label>
+      <input id="maxPeople" type="number" name="maxPeople" value="">
+
+
+
+      <!-- <label for="photo">Enter photo: </label>
+      <input id="photo" type="file" accept="image/*" name="photo"> -->
+      <!-- user == current_user ? -->
+      <!-- date available = new date available ? -->
+      <!-- coordinates lat/long, type address on map ? -->
+      <input type="submit" value="Create boat">
+    </form>
+
+  </div>
+
+
+</div>
+
+<script type="text/javascript" src="/js/bundle.js"></script>

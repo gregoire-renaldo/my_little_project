@@ -16,14 +16,18 @@ const dateAvailableSchema = mongoose.Schema({
 const boatSchema = mongoose.Schema({
     name: { type: String, required: true, unique: true },
     description: { type: String, required: true },
-    price_for_rent: { type: Number, required: true },
-    imagePath: { type: String },
-    user_id: { type: String  },
+    price: { type: Number, required: true },
+    photo: { type: String },
+    user: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User',
+      required: [true, 'Boat must belong to a user']
+    },
     dateAvailable: [dateAvailableSchema],
     date: dateAvailableSchema,
     maxPeople: {
       type: Number,
-      required: [true, 'A tour must have a group size']
+      required: [true, 'A boat must have a group size']
     },
     place: {
       // geojson, 1 boat place
@@ -47,12 +51,12 @@ const boatSchema = mongoose.Schema({
   }
   );
 
-  boatSchema.virtual('reviews', {
-    ref: 'Review',
-    // foreignField = where there is th Id
-    foreignField: 'boat',
-    localField: '_id'
-  })
+  // boatSchema.virtual('reviews', {
+  //   ref: 'Review',
+  //   // foreignField = where there is th Id
+  //   foreignField: 'boat',
+  //   localField: '_id'
+  // })
 
 // Query MIDDLEWARE
 // regex forevery mongo request starting by "find => findById etc .."

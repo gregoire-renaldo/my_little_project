@@ -93,10 +93,9 @@ app.use('/user', userRoutes);
 const boatRoutes = require('./routes/boatRoutes')
 app.use('/boat', boatRoutes);
 
+// owner boat, authentified, can create ,update, delete a boat
 const boatOwnerRoutes = require('./routes/boatOwnerRoutes')
 app.use('/boat/Owner', boatOwnerRoutes)
-
-// owner boat, authentified, can create ,update, delete a boat
 
 // reviews
 const reviewsRoutes = require('./routes/reviewRoutes')

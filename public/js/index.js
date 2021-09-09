@@ -2,12 +2,15 @@
 import "@babel/polyfill";
 import { login, logout } from './login';
 import  {updateSettings}  from './updateSettings';
+import  {createBoat}  from './create-boat';
 
 // DOM ELEMENTS
 const loginForm = document.getElementById('login-form');
 const logoutButton = document.getElementById('logout-button');
 const updateMeForm = document.getElementById('update-me-form');
 const updatePasswordForm = document.getElementById('update-password-form');
+
+const createBoatForm = document.getElementById('form-create-boat')
 
 if (loginForm)
 loginForm.addEventListener('submit', e => {
@@ -45,6 +48,24 @@ updatePasswordForm.addEventListener('submit', async e => {
   await updateSettings({ passwordCurrent, password, passwordConfirm}, 'password');
 
 })
+
+
+if (createBoatForm)
+  createBoatForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const description = document.getElementById('description').value;
+    const price = document.getElementById('price').value;
+    // const form = new FormData();
+    // form.append('name', document.getElementById('name').value)
+    // form.append('description', document.getElementById('description').value)
+    // form.append('price', document.getElementById('price').value)
+    // form.append('photo', document.getElementById('photo').files[0])
+    // console.log(form)
+    await createBoat(name,description, price)
+  })
+
+
 
 // idFields = [ ]
 const deleteFields = (idFields) => {

@@ -6,6 +6,8 @@ const authController = require('../controllers/authController')
 
 
 router.get('/getAllReviews', reviewController.getAllReviews)
-router.post('/createReview', authController.protect, authController.restrictTo('user'), reviewController.createReview)
+
+// just create review, not nested
+// router.post('/createReview', authController.protect, authController.restrictTo('user'), reviewController.createReview)
 
 module.exports = router

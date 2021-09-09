@@ -3,78 +3,60 @@
 </head>
 
 <h1>salut</h1>
-<h2>all boats, only admin </h2>
+<div class="container">
+
+  <% if (typeof user !== 'undefined') { %>
+    <p> Logged In!!!</p>
+    <button id="logout-button">Logout</button>
+  <%} else { %>
+    <h2>login</h2>
+    <div >
+      <!-- <form action="/user/login" method="post" id="login-form"> -->
+      <form  id="login-form">
+        <label for="email">Enter email: </label>
+        <input id="email-login" type="text" name="email" value="">
+        <label for="password">Enter password: </label>
+        <input id="password-login" type="text" name="password" value="">
+        <input type="submit" value="OK">
+      </form>
+    </div>
 
 
-<% if (typeof user !== 'undefined') { %>
-  <p> Logged In!!!</p>
-  <button id="logout-button">Logout</button>
-    <%} else { %>
-      <h2>login</h2>
-<div>
-  <!-- <form action="/user/login" method="post" id="login-form"> -->
-  <form  id="login-form">
-    <label for="email">Enter email: </label>
-    <input id="email-login" type="text" name="email" value="">
-    <label for="password">Enter password: </label>
-    <input id="password-login" type="text" name="password" value="">
-    <input type="submit" value="OK">
-  </form>
+  <% } %>
+
+    <div>
+      <h2>My account</h2>
+      <a href="http://localhost:3000/me">Go to my account</a>
+    </div>
+
+  <div>
+    <a href="http://localhost:3000/user/getAllUsers">all users</a>
+  </div>
+
+  <h2>signup</h2>
+  <div>
+    <form action="/signup" method="post">
+      <label for="firstname">Enter firstname: </label>
+      <input id="firstname" type="text" name="firstname" value="">
+      <label for="lastname">Enter lastname: </label>
+      <input id="lastname" type="text" name="lastname" value="">
+      <label for="email">Enter email: </label>
+      <input id="email" type="text" name="email" value="">
+      <label for="password">Enter password: </label>
+      <input id="password" type="text" name="password" value="">
+      <label for="passwordConfirm">Enter password: </label>
+      <input id="passwordConfirm" type="text" name="passwordConfirm" value="">
+      <input type="submit" value="OK">
+    </form>
+  </div>
+
 </div>
-      <% } %>
-
-      <div>
-        <h2>My account</h2>
-        <a href="http://localhost:3000/me">Go to my account</a>
-      </div>
-
-<div>
-  <a href="http://localhost:3000/user/getAllUsers">all users</a>
-</div>
-<h2>signup</h2>
-<div>
-  <form action="/signup" method="post">
-    <label for="firstname">Enter firstname: </label>
-    <input id="firstname" type="text" name="firstname" value="">
-    <label for="lastname">Enter lastname: </label>
-    <input id="lastname" type="text" name="lastname" value="">
-    <label for="email">Enter email: </label>
-    <input id="email" type="text" name="email" value="">
-    <label for="password">Enter password: </label>
-    <input id="password" type="text" name="password" value="">
-    <label for="passwordConfirm">Enter password: </label>
-    <input id="passwordConfirm" type="text" name="passwordConfirm" value="">
-    <input type="submit" value="OK">
-  </form>
-</div>
-
-
-
-<h2>boate create</h2>
-<div>
-  <form action="/boat/Owner/creatBoat" method="post" id="">
-    <label for="name">Enter name: </label>
-    <input id="name" type="text" name="name" value="">
-
-    <label for="description">Enter description: </label>
-    <input id="description" type="text" name="description" value="">
-
-    <label for="price">Enter price: </label>
-    <input id="price" type="text" name="price" value="">
-
-    <label for="price">Enter price: </label>
-    <input id="price" type="text" name="price" value="">
-    <!-- photo multer && cloudinary ? -->
-    <!-- user == current_user ? -->
-    <!-- date available = new date available ? -->
-    <!-- coordinates lat/long, type address on map ? -->
 
 
 
 
-    <input type="submit" value="OK">
-  </form>
-</div>
+
+
 
 
 <script type="text/javascript" src="/js/bundle.js"></script>

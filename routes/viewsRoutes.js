@@ -7,8 +7,12 @@ const router = express.Router();
 // '/' home page
 router.get('', authController.isLoggedIn,  viewsController.getHome);
 
-// my account
+// user: my account
 router.get('/me', authController.isLoggedIn, authController.protect, viewsController.getMyAccount )
 module.exports = router;
 
-router.post('/submit-user-data', authController.protect, viewsController.updateUserData )
+// route to use if using method ation post in form, instead i'm using js to take the data and send it to the front
+// router.post('/submit-user-data', authController.protect, viewsController.updateUserData )
+
+// boat-owner: my account & create boat
+router.get('/boat-owner-account', authController.isLoggedIn, authController.protect, authController.restrictTo('boat-owner'), viewsController.getMyAccountOwnerBoat)

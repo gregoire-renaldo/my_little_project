@@ -7,11 +7,13 @@ exports.getHome = catchAsync(async (req, res, next) => {
   }
 )
 
+// --------------------------  Role: user --------------------------------------
+
 exports.getMyAccount = catchAsync(async(req,res, next) => {
   res.status(200).render('pages/account', {
     title: 'Your account'
   });
-})
+});
 
 exports.updateUserData = catchAsync(
   async(req, res, next) => {
@@ -33,3 +35,12 @@ exports.updateUserData = catchAsync(
       user: updatedUser
     });
   })
+
+  // --------------------------  Role: owner-boat --------------------------------------
+
+
+exports.getMyAccountOwnerBoat = catchAsync(async (req, res, next) => {
+  res.status(200).render('pages/boat-owner-account', {
+    title: 'Your boat owner account'
+  });
+})
