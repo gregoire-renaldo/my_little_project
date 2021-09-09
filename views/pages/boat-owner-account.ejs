@@ -10,7 +10,7 @@
   <h2>boate create</h2>
   <div>
 
-    <form action="/boat/Owner/createBoat" method="post" id="">
+    <form action="/boat/Owner/createBoat" method="POST" enctype='multipart/form-data' id="">
     <!-- <form id="form-create-boat"> -->
       <label for="name">Enter name: </label>
       <input id="name" type="text" name="name" value="">
@@ -24,10 +24,8 @@
       <label for="maxPeople">Max people </label>
       <input id="maxPeople" type="number" name="maxPeople" value="">
 
-
-
-      <!-- <label for="photo">Enter photo: </label>
-      <input id="photo" type="file" accept="image/*" name="photo"> -->
+      <label for="photo">Enter photo: </label>
+      <input id="photo" type="file" accept="image/*" name="photo">
       <!-- user == current_user ? -->
       <!-- date available = new date available ? -->
       <!-- coordinates lat/long, type address on map ? -->

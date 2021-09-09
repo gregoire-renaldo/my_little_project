@@ -5,7 +5,7 @@ const catchAsync = require('../utils/catchAsync');
 const multer = require('multer');
 const sharp = require('sharp');
 
-// to ave on disk
+// to save on disk
 // const multerStorage = multer.diskStorage({
 //   destination: (req, file,cb) => {
 //     cb(null, 'public/img/users');
@@ -44,7 +44,6 @@ exports.resizeUserPhoto = (req, res, next) => {
   // set filename, need filemane in filterBody
   // no need to set ext, toformat... format :-)
   req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`;
-
   // square images fo avatar 500*500, sharp crop by default
   // resize(width height options)
   sharp(req.file.buffer)
@@ -52,7 +51,6 @@ exports.resizeUserPhoto = (req, res, next) => {
   .toFormat('jpeg')
   .jpeg({quality: 90})
   .toFile(`public/img/users/${req.file.filename}`);
-
   // next for updateMe
   next()
 };

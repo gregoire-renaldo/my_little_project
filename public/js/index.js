@@ -56,13 +56,16 @@ if (createBoatForm)
     const name = document.getElementById('name').value;
     const description = document.getElementById('description').value;
     const price = document.getElementById('price').value;
+    const maxPeople = document.getElementById('maxPeople').value;
+    const photo = document.getElementById('photo').value;
     // const form = new FormData();
     // form.append('name', document.getElementById('name').value)
     // form.append('description', document.getElementById('description').value)
     // form.append('price', document.getElementById('price').value)
+    // form.append('maxPeople', document.getElementById('maxPeople').value)
     // form.append('photo', document.getElementById('photo').files[0])
     // console.log(form)
-    await createBoat(name,description, price)
+    await createBoat({name, description, price, maxPeople, photo})
   })
 
 

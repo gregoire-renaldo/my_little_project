@@ -1,4 +1,4 @@
-export const createBoat = async (name, description, price) => {
+export const createBoat = async (name, description, price, maxPeople) => {
   try {
     const res = await axios({
       method: 'POST',
@@ -6,7 +6,8 @@ export const createBoat = async (name, description, price) => {
       data: {
         name,
         description,
-        price
+        price,
+        maxPeople
       }
     })
 

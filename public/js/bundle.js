@@ -8948,7 +8948,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 var createBoat = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(name, description, price) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(name, description, price, maxPeople) {
     var res;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
@@ -8962,7 +8962,8 @@ var createBoat = /*#__PURE__*/function () {
               data: {
                 name: name,
                 description: description,
-                price: price
+                price: price,
+                maxPeople: maxPeople
               }
             });
 
@@ -8994,7 +8995,7 @@ var createBoat = /*#__PURE__*/function () {
     }, _callee, null, [[0, 8]]);
   }));
 
-  return function createBoat(_x, _x2, _x3) {
+  return function createBoat(_x, _x2, _x3, _x4) {
     return _ref.apply(this, arguments);
   };
 }();
@@ -9337,7 +9338,7 @@ if (updatePasswordForm) updatePasswordForm.addEventListener('submit', /*#__PURE_
 }());
 if (createBoatForm) createBoatForm.addEventListener('submit', /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(e) {
-    var name, description, price;
+    var name, description, price, maxPeople, photo;
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
@@ -9345,17 +9346,26 @@ if (createBoatForm) createBoatForm.addEventListener('submit', /*#__PURE__*/funct
             e.preventDefault();
             name = document.getElementById('name').value;
             description = document.getElementById('description').value;
-            price = document.getElementById('price').value; // const form = new FormData();
+            price = document.getElementById('price').value;
+            maxPeople = document.getElementById('maxPeople').value;
+            photo = document.getElementById('photo').value; // const form = new FormData();
             // form.append('name', document.getElementById('name').value)
             // form.append('description', document.getElementById('description').value)
             // form.append('price', document.getElementById('price').value)
+            // form.append('maxPeople', document.getElementById('maxPeople').value)
             // form.append('photo', document.getElementById('photo').files[0])
             // console.log(form)
 
-            _context2.next = 6;
-            return (0, _createBoat.createBoat)(name, description, price);
+            _context2.next = 8;
+            return (0, _createBoat.createBoat)({
+              name: name,
+              description: description,
+              price: price,
+              maxPeople: maxPeople,
+              photo: photo
+            });
 
-          case 6:
+          case 8:
           case "end":
             return _context2.stop();
         }
@@ -9401,7 +9411,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38885" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45359" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
