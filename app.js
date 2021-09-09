@@ -101,6 +101,9 @@ app.use('/boat/Owner', boatOwnerRoutes)
 const reviewsRoutes = require('./routes/reviewRoutes')
 app.use('/reviews', reviewsRoutes)
 
+// bookings
+const bookingRoutes = require('./routes/bookingRoutes')
+app.use('/bookings', bookingRoutes)
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));

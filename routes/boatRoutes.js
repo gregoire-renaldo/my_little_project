@@ -4,7 +4,11 @@ const authController = require('../controllers/authController')
 const boatController = require('../controllers/boatController')
 const reviewController = require('../controllers/reviewController')
 
-router.get('/getBoat/:id',  boatController.getBoat)
+// '/boat'
+
+router.get('/getBoat/:id', boatController.getBoat)
+
+router.get('/boats', boatController.getBoats)
 
 // nested route with boat
 

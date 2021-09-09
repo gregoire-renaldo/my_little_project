@@ -3,8 +3,13 @@
   <a href="http://localhost:3000/">http://localhost:3000/</a>
 </h2>
 <ul>
-  <% boats.forEach(function(boat) { %>
+  <% boats.forEach( boat => { %>
+    <a href= /boat/getBoat/<%=boat.id%> >
+
+
     <li> Name:<%= boat.name %> Descri:<%= boat.description %> Price:<%= boat.price %>
     </li>
+
+  </a>
     <% }); %>
 </ul>

@@ -8,6 +8,23 @@ exports.getHome = catchAsync(async (req, res, next) => {
   }
 )
 
+
+exports.getBoat = catchAsync(async (req, res, next) => {
+  // 1) Get the data, for the requested tour (including reviews and guides)
+  const boat = await Boat.findOne({ id: req.params.id })
+
+  if (!boat) {
+    return next(new AppError('There is no boat with that name.', 404));
+  }
+
+  // 2) Build template
+  // 3) Render template using data from 1)
+  res.status(200).render('pages/boat/:id', {
+    title: `${boat.name} boat`,
+    boat
+  });
+});
+
 // --------------------------  Role: user --------------------------------------
 
 exports.getMyAccount = catchAsync(async(req,res, next) => {
@@ -36,6 +53,9 @@ exports.updateUserData = catchAsync(
       user: updatedUser
     });
   })
+
+
+
 
   // --------------------------  Role: owner-boat --------------------------------------
 
