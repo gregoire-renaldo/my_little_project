@@ -6,7 +6,7 @@ const reviewController = require('../controllers/reviewController')
 
 // '/boat'
 
-router.get('/getBoat/:id', boatController.getBoat)
+router.get('/getBoat/:id',authController.protect, boatController.getBoat)
 
 router.get('/boats', boatController.getBoats)
 

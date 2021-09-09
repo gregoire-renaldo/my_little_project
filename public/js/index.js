@@ -3,14 +3,14 @@ import "@babel/polyfill";
 import { login, logout } from './login';
 import  {updateSettings}  from './updateSettings';
 import  {createBoat}  from './create-boat';
-
+import { bookBoat } from './stripe';
 // DOM ELEMENTS
 const loginForm = document.getElementById('login-form');
 const logoutButton = document.getElementById('logout-button');
 const updateMeForm = document.getElementById('update-me-form');
 const updatePasswordForm = document.getElementById('update-password-form');
-
-const createBoatForm = document.getElementById('form-create-boat')
+const bookButton = document.getElementById('book-boat');
+const createBoatForm = document.getElementById('form-create-boat');
 
 if (loginForm)
 loginForm.addEventListener('submit', e => {
@@ -49,6 +49,16 @@ updatePasswordForm.addEventListener('submit', async e => {
 
 })
 
+
+if (bookButton)
+  bookButton.addEventListener('click', e => {
+    // boatId = data-tour-id, converted
+    e.target.textContent = 'Processing ...'
+    const boatId = e.target.dataset.boatId;
+    // equivalent
+    // const { boatId } = e.target.dataSet.boatId;
+    bookBoat(boatId);
+  })
 
 if (createBoatForm)
   createBoatForm.addEventListener('submit', async e => {

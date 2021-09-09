@@ -1,1 +1,31 @@
-my boat
+<script src="https://js.stripe.com/v3/"></script>
+
+<%- boat.name %>
+<%- boat.descrition %>
+<%- boat.price%>
+
+
+<% if (typeof user !=='undefined' ) { %>
+  <p> Logged In!!!</p>
+  <button id="book-boat" data-boat-id=<%-`${boat.id}`%> >Book</button>
+
+
+
+
+  <%} else { %>
+    <h2>login to book the boat</h2>
+    <div>
+      <!-- <form action="/user/login" method="post" id="login-form"> -->
+      <form id="login-form">
+        <label for="email">Enter email: </label>
+        <input id="email-login" type="text" name="email" value="">
+        <label for="password">Enter password: </label>
+        <input id="password-login" type="text" name="password" value="">
+        <input type="submit" value="OK">
+      </form>
+    </div>
+    <% } %>
+    <div>
+      <button id="logout-button">Logout</button>
+    </div>
+<script type="text/javascript" src="/js/bundle.js"></script>
