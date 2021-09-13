@@ -14,7 +14,8 @@ export const bookBoat = async boatId => {
     sessionId: session.data.session.id
   })
   } catch (err) {
-
+    console.log(err)
+    // show alert to user
   }
 
 }

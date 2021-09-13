@@ -2,11 +2,12 @@ const express = require('express');
 const viewsController = require('../controllers/viewsController');
 const authController = require('../controllers/authController');
 const boatController = require('../controllers/boatController');
+const bookingController = require('../controllers/bookingController');
 
 const router = express.Router();
 
 // '/' home page
-router.get('', authController.isLoggedIn,  viewsController.getHome);
+router.get('/', bookingController.createBookingCheckout, authController.isLoggedIn, viewsController.getHome);
 
 router.route('boat/:id').get(boatController.getBoat);
 

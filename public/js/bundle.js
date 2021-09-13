@@ -9040,14 +9040,15 @@ var bookBoat = /*#__PURE__*/function () {
             });
 
           case 7:
-            _context.next = 11;
+            _context.next = 12;
             break;
 
           case 9:
             _context.prev = 9;
             _context.t0 = _context["catch"](0);
+            console.log(_context.t0); // show alert to user
 
-          case 11:
+          case 12:
           case "end":
             return _context.stop();
         }
@@ -9482,7 +9483,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44071" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42249" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
