@@ -2,6 +2,8 @@ const User = require('../models/User')
 // const Boat = require('../models/Boat')
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
+const Booking = require('../models/Booking');
+const Boat = require('../models/Boat');
 
 exports.getHome = catchAsync(async (req, res, next) => {
   res.render('pages/home');
@@ -32,6 +34,21 @@ exports.getMyAccount = catchAsync(async(req,res, next) => {
     title: 'Your account'
   });
 });
+
+// could do with virtual populate
+// boats booked
+exports.getMyBoats = catchAsync(async(req,res, next) => {
+  const bookings = await Booking.find({user: req.user.id})
+  const boatIds = bookings.map(el => el.boat)
+  const boats = await Boat.find({ _id: {$in: boatIds }})
+  console.log(boats)
+  res.status(200).render('pages/my-boats', {
+    title: 'my boats',
+    boats
+  })
+});
+
+
 
 exports.updateUserData = catchAsync(
   async(req, res, next) => {

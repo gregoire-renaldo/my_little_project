@@ -13,7 +13,10 @@ router.route('boat/:id').get(boatController.getBoat);
 
 
 // user: my account
-router.get('/me', authController.isLoggedIn, authController.protect, viewsController.getMyAccount )
+router.get('/me', authController.isLoggedIn, authController.protect, viewsController.getMyAccount );
+
+// boats booked
+router.get('/my-boats', authController.protect, viewsController.getMyBoats )
 
 // route to use if using method ation post in form, instead i'm using js to take the data and send it to the front
 // router.post('/submit-user-data', authController.protect, viewsController.updateUserData )

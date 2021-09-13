@@ -47,8 +47,7 @@ exports.getCheckoutSession = catchAsync(async(req, res, next) => {
     // add middleware to booking stack, in routes of course, to handle the query string wi
     //  success_url: `${req.protocol}://${req.get('host')}/?boat=${req.params.boatId}&user=${req.user.id}&price=${req.boat.price}`,
     //  get home: / so add in route '/'
-  exports.createBookingCheckout = catchAsync(
-    async(req, res, next) => {
+  exports.createBookingCheckout = catchAsync(async(req, res, next) => {
       const { boat, user, price} = req.query
       if(!boat && !user && !price) return next();
       // no need for a variable
@@ -57,3 +56,18 @@ exports.getCheckoutSession = catchAsync(async(req, res, next) => {
       res.redirect(req.originalUrl.split('?')[0])
     }
   )
+
+exports.createBooking = catchAsync(async(req,res, next) => {
+  const newBooking = await Booking.create(req.body)
+  res.status(201).json({
+    status: 'success',
+    data: {
+      data: newBooking
+    }
+})
+ })
+
+//  getOne
+// getAll
+//update
+// delete

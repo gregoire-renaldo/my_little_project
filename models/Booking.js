@@ -31,6 +31,7 @@ bookingSchema.pre(/^find/, function (next) {
     path: 'boat',
     select: 'name'
   })
+  next()
 })
 
 
