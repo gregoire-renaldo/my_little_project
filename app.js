@@ -111,7 +111,7 @@ app.all('*', (req, res, next) => {
 
 app.use(globalErrorHandler)
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 8000
 const server = app.listen(port,() => {
   console.log(`live sur le port  ${port}!`);
   console.log(app.get('env'))
