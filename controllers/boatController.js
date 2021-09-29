@@ -24,28 +24,18 @@ exports.getBoat = catchAsync(async(req,res,next) => {
   // })
 })
 
-// json({
-//   status: 'success',
-//   data: {
-//     boat
-//   }
-// })
-
-// exports.getBoats = catchAsync(async(req,res,next) => {
-//   const boats = await Boat.find()
-//   console.log(boats)
-//   res.status(200).render('pages/boats', {
-//     title: 'all the boats',
-//     boats: boats
-//   })
-// })
-
 exports.getBoats = catchAsync(async (req, res, next) => {
   const boats = await Boat.find();
-  console.log('req get all boats received');
+  console.log("req get all boats received");
+  //   res.status(200).render('pages/boats', {
+  //     title: 'all the boats',
+  //     boats: boats
+  //   })
+  // })
   res.status(200).json({
     status: "success",
-      data: {
-        boats
-  }});
+    data: {
+      boats,
+    },
+  });
 });

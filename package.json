@@ -35,6 +35,13 @@
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
-    "parcel-bundler": "^1.12.5"
+    "@babel/core": "^7.15.5",
+    "fibers": "^5.0.0",
+    "next": "^11.1.2",
+    "node-sass": "^5.0.0",
+    "parcel-bundler": "^1.12.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "sass": "^1.42.1"
   }
 }

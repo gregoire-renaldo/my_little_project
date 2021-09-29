@@ -57,10 +57,14 @@ exports.signup = catchAsync(async (req, res, next) => {
 
 
 exports.login = catchAsync(async (req, res, next) => {
+  debugger
+  console.log('je suis dans le login node')
+  console.log(req.body)
+  console.log(req.body.email)
     const { email, password } = req.body;
     // email password exist ?
     if (!email || !password) {
-      // return before next to make sur the code before stopped while launching the promise
+      // return before next to make sure the code before stopped while launching the promise
       return next(new AppError(`Please provide email and password `, 400))
     }
     // user exist ? select +password to permit show (from model)
@@ -70,6 +74,7 @@ exports.login = catchAsync(async (req, res, next) => {
       return next(new AppError(' Incorrect email or password', 401))
     }
     // send token
+    console.log('sending token')
     createSendToken(user, 200, res)
   }
 );
