@@ -14,6 +14,7 @@ const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 
 const app = express();
+console.log(process.env.NODE_ENV)
 
 // Global middleware
 // security http headers
@@ -41,7 +42,14 @@ mongoose.connect(process.env.DATABASE,
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
-app.use(cors());
+app.use(
+  cors(
+  //   {
+  //   origin: "http://localhost:3000",
+  //   credentials: true,
+  // }
+  )
+);
 
   // Body parser To parse get post update, reading data from body into req.body
 // parde data from body

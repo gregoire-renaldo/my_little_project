@@ -8890,7 +8890,7 @@ var logout = /*#__PURE__*/function () {
             _context2.next = 3;
             return (0, _axios["default"])({
               method: 'GET',
-              url: "http://localhost:3000/user/logout"
+              url: "http://localhost:8000/user/logout"
             });
 
           case 3:
@@ -8946,7 +8946,7 @@ var updateSettings = /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
-            url = type === 'password' ? 'http://localhost:3000/user/updatePassword' : 'http://localhost:3000/user/updateMe';
+            url = type === 'password' ? 'http://localhost:8000/user/updatePassword' : 'http://localhost:8000/user/updateMe';
             _context.next = 4;
             return (0, _axios["default"])({
               method: 'PATCH',
@@ -9012,7 +9012,7 @@ var createBoat = /*#__PURE__*/function () {
             _context.next = 3;
             return axios({
               method: 'POST',
-              url: "http://localhost:3000/boat/owner/createBoat",
+              url: "http://localhost:8000/boat/owner/createBoat",
               data: {
                 name: name,
                 description: description,
@@ -9083,7 +9083,7 @@ var bookBoat = /*#__PURE__*/function () {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return (0, _axios["default"])("http://localhost:3000/bookings/checkout-session/".concat(boatId));
+            return (0, _axios["default"])("http://localhost:8000/bookings/checkout-session/".concat(boatId));
 
           case 3:
             session = _context.sent;
@@ -9540,7 +9540,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "32907" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38919" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

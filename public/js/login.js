@@ -30,7 +30,7 @@ export const logout = async () => {
   try {
     const res = await axios({
       method: 'GET',
-      url: "http://localhost:3000/user/logout",
+      url: "http://localhost:8000/user/logout",
     });
     // reload true to force reload (not from the cache, from the server)
     if (res.data.status = 'success') location.reload(true); alert('Logged out successfully !');

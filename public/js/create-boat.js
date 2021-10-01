@@ -2,7 +2,7 @@ export const createBoat = async (name, description, price, maxPeople) => {
   try {
     const res = await axios({
       method: 'POST',
-      url: "http://localhost:3000/boat/owner/createBoat",
+      url: "http://localhost:8000/boat/owner/createBoat",
       data: {
         name,
         description,

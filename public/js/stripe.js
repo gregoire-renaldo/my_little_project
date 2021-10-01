@@ -6,7 +6,7 @@ const stripe = Stripe('pk_test_51JXnQNC3UW2q90bhKOSUj6q9dywO3AQq7BoY1fD14Ls3LlUp
 export const bookBoat = async boatId => {
   try {
     // get checkout session
-    const session = await axios(`http://localhost:3000/bookings/checkout-session/${boatId}`)
+    const session = await axios(`http://localhost:8000/bookings/checkout-session/${boatId}`)
     console.log(session);
 
   // 2 create checkout form

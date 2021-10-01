@@ -4,7 +4,7 @@ import axios from 'axios';
 // type is password or data
 export const updateSettings = async(data, type) => {
   try {
-    const url = type === 'password' ? 'http://localhost:3000/user/updatePassword' : 'http://localhost:3000/user/updateMe';
+    const url = type === 'password' ? 'http://localhost:8000/user/updatePassword' : 'http://localhost:8000/user/updateMe';
     const res = await axios({
       method: 'PATCH',
       url,

@@ -20,7 +20,7 @@ const createSendToken = (user, statusCode, res) => {
     // only https, but works only in production, so handled in the if
     // secure: true,
     // impossible to modify cookie in the browser
-    httpOnly: true
+    // httpOnly: true
   }
 
   if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
@@ -42,6 +42,7 @@ const createSendToken = (user, statusCode, res) => {
 
 // db operations, needs a promise
 exports.signup = catchAsync(async (req, res, next) => {
+  console.log('receving req')
   // await to return value
   // not req.body to prevent to change the body and put role: admin for example...
   const newUser = await User.create({
@@ -50,16 +51,15 @@ exports.signup = catchAsync(async (req, res, next) => {
     email: req.body.email,
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
-
   });
+  console.log('error in authcontroller',error)
+  console.log("sending token, newUser ");
   createSendToken(newUser, 201, res)
 })
 
 
 exports.login = catchAsync(async (req, res, next) => {
-  debugger
   console.log('je suis dans le login node')
-  console.log(req.body)
   console.log(req.body.email)
     const { email, password } = req.body;
     // email password exist ?
@@ -102,6 +102,7 @@ exports.isLoggedIn = async (req, res, next) => {
   // user is logged in
   // res.locals to pass user to front
   res.locals.user = currentUser;
+  console.log(currentUser)
   return next();
     } catch(err) {
       return next()
